@@ -9,10 +9,11 @@ using Microsoft.Extensions.Logging;
 using DoAn_ASPNETCORE.Areas.Admin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using DoAn_ASPNETCORE.Areas.Admin.Models;
 
 namespace DoAn_ASPNETCORE.Controllers
 {
-
+    [Route("product")]
     public class PagesController : Controller
     {
         private readonly Webbanhang _context;
@@ -21,23 +22,28 @@ namespace DoAn_ASPNETCORE.Controllers
         {
             _context = context;
         }
+
+        [Route("")]
+        [Route("index")]
+        [Route("~/")]
         public async Task<IActionResult> Index()
         {
             var DsNewProducts = (from m in _context.SanPhamModel
-                           where m.DanhMuc=="DM1"
-                           select m).Take(4).ToList();
+                                 where m.DanhMuc == "DM1"
+                                 select m).Take(4).ToList();
 
             var DsLastedProducts = (from m in _context.SanPhamModel
                                     where m.DanhMuc == "DM2"
                                     select m).Take(4).ToList();
+
             ViewBag.LastedProducts = DsLastedProducts;
-          
+
 
             ViewBag.NewProducts = DsNewProducts;
 
             var Loai = (from l in _context.LoaiSanPhamModel
-                                
-                                 select l).ToList();
+
+                        select l).ToList();
             ViewBag.TenL = Loai;
 
 
@@ -47,6 +53,7 @@ namespace DoAn_ASPNETCORE.Controllers
             ViewBag.BestSellers = BetsSell;
 
             ViewBag.Username = HttpContext.Session.GetString("username");
+
 
 
             return View();

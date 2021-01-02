@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAn_ASPNETCORE.Migrations
 {
     [DbContext(typeof(Webbanhang))]
-    [Migration("20201222120300_KhoiTao")]
+    [Migration("20201231070726_KhoiTao")]
     partial class KhoiTao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,8 +149,8 @@ namespace DoAn_ASPNETCORE.Migrations
 
                     b.Property<string>("TenLoai")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("TrangThai")
                         .IsRequired()

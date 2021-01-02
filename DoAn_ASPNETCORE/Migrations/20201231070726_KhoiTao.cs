@@ -61,7 +61,7 @@ namespace DoAn_ASPNETCORE.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoai = table.Column<string>(maxLength: 20, nullable: false),
+                    TenLoai = table.Column<string>(maxLength: 50, nullable: false),
                     NhaCungCap = table.Column<int>(nullable: false),
                     TrangThai = table.Column<string>(nullable: false)
                 },

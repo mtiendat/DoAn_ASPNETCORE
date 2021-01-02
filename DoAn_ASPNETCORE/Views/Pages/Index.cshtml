@@ -120,7 +120,7 @@
                                 <h6><a href="~/pages/single/@item.ID">@item.TenSP</a></h6>
                                 <span class="size">@item.Size</span>
                                 <p><del>@item.Gia VND</del><em class="item_price">@item.GiaMoi VND  </em></p>
-                                <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                                <a  asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
                             </div>
                         </div>
 

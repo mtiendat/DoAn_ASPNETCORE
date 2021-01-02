@@ -29,5 +29,6 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Models
         public string TrangThai { get; set; }
         public ICollection<ChiTietHoaDonModel> lstChiTietHoaDon { set; get; }
 
+       
     }
 }

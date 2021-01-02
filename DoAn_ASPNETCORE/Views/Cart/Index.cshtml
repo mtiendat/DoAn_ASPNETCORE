@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@{
+    ViewData["Title"] = "pages Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Cart Page</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Xóa</th>
+
+        <th>Tên SP</th>
+        <th>Ảnh</th>
+        <th>Giá</th>
+        <th>Số Lượng</th>
+
+    </tr>
+    @foreach (var item in ViewBag.cart)
+    {
+<tr>
+ 
+    <td class="btn btn-danger"><a asp-controller="Cart" asp-action="remove" asp-route-id="@item.SanPham.ID">Delete</a></td>
+
+    <td>@item.SanPham.TenSP</td>
+    <td><img src="~/images/@item.SanPham.Image" width="60" /> </td>
+    <td>@item.SanPham.Gia</td>
+
+    <td>@item.QuanTity</td>
+</tr>
+    }
+
+</table>
+
+<tr>
+    <td align="right" colspan="6">Tổng Tiền</td>
+    <td>
+        <b style="color:black;font-size:20px">@ViewBag.total</b>  
+    </td>
+</tr>
+<br>
+<a asp-controller="Pages" asp-action="Index">Continue Shopping</a>
+

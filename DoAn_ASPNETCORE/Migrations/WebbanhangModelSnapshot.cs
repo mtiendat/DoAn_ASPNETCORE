@@ -147,8 +147,8 @@ namespace DoAn_ASPNETCORE.Migrations
 
                     b.Property<string>("TenLoai")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("TrangThai")
                         .IsRequired()
