@@ -53,10 +53,11 @@ namespace DoAn_ASPNETCORE.Controllers
         }
         public IActionResult Products1(int? id)
         {
-            var DsLaptop = (from m in _context.SanPhamModel
-                            where m.MaLoai == id
-                            select m).ToList();
-            ViewBag.LapTop = DsLaptop;
+            ViewBag.id = id;
+            //var DsLaptop = (from m in _context.SanPhamModel
+            //                where m.MaLoai == id
+            //                select m).ToList();
+            //ViewBag.LapTop = DsLaptop;
             ViewBag.Username = HttpContext.Session.GetString("username");
             return View();
         }
