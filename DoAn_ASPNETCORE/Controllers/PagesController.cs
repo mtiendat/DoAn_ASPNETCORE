@@ -67,11 +67,11 @@ namespace DoAn_ASPNETCORE.Controllers
             ViewBag.Username = HttpContext.Session.GetString("username");
             return View();
         }
-        public IActionResult Login()
-        {
-            ViewBag.Username = HttpContext.Session.GetString("username");
-            return View();
-        }
+        //public IActionResult Login()
+        //{
+        //    ViewBag.Username = HttpContext.Session.GetString("username");
+        //    return View();
+        //}
         public IActionResult Registered()
         {
             ViewBag.Username = HttpContext.Session.GetString("username");

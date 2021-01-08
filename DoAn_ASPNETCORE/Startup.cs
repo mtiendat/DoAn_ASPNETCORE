@@ -24,6 +24,7 @@ namespace DoAn_ASPNETCORE
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
             services.AddDbContext<Webbanhang>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Webbanhang")));
@@ -62,6 +63,9 @@ namespace DoAn_ASPNETCORE
                  name: "MyArea",
                  areaName: "Admin",
                  pattern: "Admin/{controller=SanPham}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                   name: "Areas",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                  name: "default",
                  pattern: "{controller=Pages}/{action=Index}/{id?}");
