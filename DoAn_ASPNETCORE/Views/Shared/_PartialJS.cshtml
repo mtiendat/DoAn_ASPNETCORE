@@ -87,7 +87,7 @@
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function (response) {
                 $.ajax({
-                    url: "/Login/Login",
+                    url: "/Login/LoginFB",
                     type: "POST",
                     data: { 'name': response.name },
                     success: function (data) {

@@ -44,18 +44,18 @@ namespace DoAn_ASPNETCORE.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public JsonResult Login(string name)
-        //{
-        //    HttpContext.Session.SetString("username", name);
-        //    return Json(new { success = "True" });
-        //}
-        //[HttpPost]
-        //public JsonResult LogOut()
-        //{
-        //    HttpContext.Session.Clear();
-        //    return Json(new { success = "True" });
-        //}
+        [HttpPost]
+        public JsonResult LoginFB(string name)
+        {
+            HttpContext.Session.SetString("username", name);
+            return Json(new { success = "True" });
+        }
+        [HttpPost]
+        public JsonResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return Json(new { success = "True" });
+        }
 
     }
 }
