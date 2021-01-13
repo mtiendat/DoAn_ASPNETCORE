@@ -1,9 +1,152 @@
-﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.HoaDonViewModel
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.HoaDonModel
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section css{
+    <script>
+
+    </script>
+}
+<div id="successModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <h4 class="modal-title w-100">Thêm Thành Công!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="margin-left:90px;" name="btn_ok" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="deleteModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box" style="background:#b22222">
+                    <i class="material-icons">&#xE872;</i>
+                </div>
+                <h4 class="modal-title w-100">Xóa Thành Công!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="margin-left:90px;background:#b22222" name="btn_ok" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="updateModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box" style="background:#3205cd">
+                    <i class="material-icons">&#xE86A;</i>
+                </div>
+                <h4 class="modal-title w-100">Cập Nhật Thành Công!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="margin-left:90px;background:#3205cd" name="btn_ok" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm Hóa Đơn</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="User_ID" class="control-label"></label>
+                            <input id="userid" asp-for="User_ID" class="form-control" />
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model.User_ID)</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="HoTen" class="control-label"></label>
+                            <input id="hoten" asp-for="HoTen" class="form-control" />
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model.HoTen)</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sdt" class="control-label"></label>
+                            <input id="sdt" asp-for="Sdt" class="form-control" />
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model.Sdt)</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ThanhTien" class="control-label"></label>
+                            <input id="thanhtien" asp-for="ThanhTien" class="form-control" />
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model.ThanhTien)</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TrangThai" class="control-label"></label>
+                            <input id="trangthai" asp-for="TrangThai" class="form-control" />
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" name="btn_create_hoadon" class="btn btn-primary">Thêm Mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sửa Hóa Đơn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" id="edit_id" asp-for="ID" />
+                    <div class="form-group">
+                        <label asp-for="User_ID" class="control-label"></label>
+                        <input id="edit_userid" asp-for="User_ID" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.User_ID)</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HoTen" class="control-label"></label>
+                        <input id="edit_hoten" asp-for="HoTen" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.HoTen)</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sdt" class="control-label"></label>
+                        <input id="edit_sdt" asp-for="Sdt" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.Sdt)</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ThanhTien" class="control-label"></label>
+                        <input id="edit_thanhtien" asp-for="ThanhTien" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.ThanhTien)</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TrangThai" class="control-label"></label>
+                        <input id="edit_trangthai" asp-for="TrangThai" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="btn_update_hoadon" class="btn btn-primary">Cập Nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="wrapper">
     <div class="sidebar" data-image="../../admin/img/sidebar-5.jpg">
         <!--
@@ -73,7 +216,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg " color-on-scroll="500">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#pablo">User</a>
+                <a class="navbar-brand" href="#pablo">Hóa Đơn</a>
                 <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar burger-lines"></span>
                     <span class="navbar-toggler-bar burger-lines"></span>
@@ -84,7 +227,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link" data-toggle="dropdown">
                                 <i class="nc-icon nc-palette"></i>
-                                <span class="d-lg-none">User</span>
+                                <span class="d-lg-none">Hóa Đơn</span>
                             </a>
                         </li>
                         <li class="dropdown nav-item">
@@ -141,71 +284,183 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
-
                         <p>
-                            <a asp-area="Admin" asp-controller="HoaDon" asp-action="Create">Create New</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Thêm</button>
                         </p>
 
-                        <form asp-controller="HoaDon" asp-action="Index" method="get">
+                            @*<p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Thêm</button>
+                            </p>*@
+                            @*<form asp-controller="User" asp-action="Index" method="get">
+                                <p>
 
-                            <p>
-
-
-
-                                Tên Người Mua: <input type="text" asp-for="SearchString" />
-                                <input type="submit" value="Filter" />
-                            </p>
-                        </form>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HoaDons[0].User)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HoaDons[0].HoTen)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HoaDons[0].Sdt)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HoaDons[0].ThanhTien)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HoaDons[0].TrangThai)
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.HoaDons)
-                                {
+                                    Tên Sản Phẩm: <input type="text" asp-for="searchString"><button type="submit" class="btn-facebook">Tìm</button>
+                                </p>
+                            </form>*@
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.User_ID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.HoTen)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Sdt)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ThanhTien)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TrangThai)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                                        </td>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.User_ID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.HoTen)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Sdt)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ThanhTien)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TrangThai)
+                                        </th>
+                                        <th></th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody id="dshoadon">
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
         </div>
+        @section Scripts{
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            <script>
+                window.onload = function () {
+                    $.ajax({
+                        url: "../../api/HoaDonApi/GetHoaDonModel",
+                        type: "GET",
+                        contentType: "Application/json;charset-utf-8",
+                    }).done(function (reponse) {
+                        console.log(reponse);
+                        var newHtml = "";
+
+                        $.each(reponse, function (index, hoaDon) {
+                            newHtml += '<tr><td>' + hoaDon.User_ID + '</td>';
+                            newHtml += '<td>' + hoaDon.hoTen + '</td>';
+                            newHtml += '<td>' + hoaDon.sdt + '</td>';
+                            newHtml += '<td>' + hoaDon.thanhTien + '</td>';
+                            newHtml += '<td>' + hoaDon.trangThai + '</td>';
+                            newHtml += '<td>' + '<button type="button" id="edit_hoadon" data-idloaisp="' + hoaDon.id + '" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit</button>';
+                            newHtml += '<button type="button" id="btn_delete_hoadon" data-idloaisp="' + hoaDon.id + '" class="btn btn-danger">Delete</button>' + '</td></tr>';
+                        });
+                        $("#dshoadon").html(newHtml);
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+
+
+                }
+                function addHoaDon() {
+                    var insert = {};
+                    insert.User_ID = parseInt($("#userid").val());
+
+                    insert.HoTen = $("#hoten").val();
+
+                    insert.Sdt = $("#sdt").val();
+
+                    insert.ThanhTien = parseInt($("#thanhtien").val());
+
+                    insert.TrangThai = parseInt($("#trangthai").val());
+
+                    $.ajax({
+                        url: "../../api/HoaDonApi/PostHoaDonModel",
+                        type: "POST",
+                        contentType: "Application/json;charset-utf-8",
+                        data: JSON.stringify(insert),
+                        dataType: "json"
+                    }).done(function (reponse) {
+                        $("#AddModal").modal('hide');
+                        $("#successModal").modal('show');
+
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+                }
+                function getHoaDon(id) {
+                    $.ajax({
+                        url: "../../api/HoaDonApi/GetHoaDonModel/" + id,
+                        type: "GET",
+                        contentType: "Application/json;charset-utf-8",
+                        dataType: "json"
+                    }).done(function (reponse) {
+                        $("#edit_id").val(reponse.id);
+                        $("#edit_userid").val(reponse.user_Id);
+                        $("#edit_hoten").val(reponse.hoTen);
+                        $("#edit_sdt").val(reponse.sdt);
+                        $("#edit_thanhtien").val(reponse.thanhTien);
+                        $("#edit_trangthai").val(reponse.trangThai);
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+                }
+                function updateHoaDon(id) {
+                    var update = {}
+                    update.ID = parseInt(id);
+                    update.User_ID = $("#userid").val();
+
+                    update.HoTen = $("#hoten").val();
+
+                    update.Sdt = $("#sdt").val();
+
+                    update.ThanhTien = $("#thanhtien").val();
+
+                    update.TrangThai = $("#trangthai").val();
+                    $.ajax({
+                        url: "../../api/HoaDonApi/PutHoaDonModel/" + id,
+                        type: "PUT",
+                        contentType: "Application/json;charset-utf-8",
+                        data: JSON.stringify(update),
+                        dataType: "json"
+                    }).done(function (reponse) {
+                        $("#EditModal").modal('hide');
+                        $("#updateModal").modal('show');
+
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+                }
+                function deleteHoaDon(id) {
+
+                    $.ajax({
+                        url: "../../api/HoaDonApi/DeleteHoaDonModel/" + id,
+                        type: "DELETE",
+                        contentType: "Application/json;charset-utf-8",
+                        dataType: "json"
+                    }).done(function (reponse) {
+                        $("#deleteModal").modal('show');
+
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+                }
+                $(document).ready(function () {
+                    $('button[name=btn_create_hoadon]').click(function (e) {
+                        addHoaDon();
+                        e.preventDefault();
+                    });
+                    $('body').on('click', '#edit_hoadon', function () {
+                        var id = $(this).data("idhoadon");
+                        getHoaDon(id);
+                        e.preventDefault();
+                    });
+                    $('body').on('click', '#btn_update_hoadon', function () {
+                        var id = $("#edit_id").val();
+                        updateHoaDon(id);
+                        e.preventDefault();
+                    });
+                    $('body').on('click', '#btn_delete_hoadon', function () {
+                        var id = $(this).data("idhoadon");
+                        deleteHoaDon(id);
+                        e.preventDefault();
+                    });
+                    $('button[name=btn_ok]').click(function (e) {
+                        location.reload();
+                    });
+                });
+
+            </script>
+        }
+

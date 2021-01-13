@@ -12,23 +12,23 @@ namespace DoAn_ASPNETCORE.Areas.Api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class HoaDonAPIController : ControllerBase
+    public class HoaDonApiController : ControllerBase
     {
         private readonly Webbanhang _context;
 
-        public HoaDonAPIController(Webbanhang context)
+        public HoaDonApiController(Webbanhang context)
         {
             _context = context;
         }
 
-        // GET: api/HoaDonAPI
+        // GET: api/HoaDonApi
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HoaDonModel>>> GetHoaDonModel()
         {
             return await _context.HoaDonModel.ToListAsync();
         }
 
-        // GET: api/HoaDonAPI/5
+        // GET: api/HoaDonApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HoaDonModel>> GetHoaDonModel(int id)
         {
@@ -42,7 +42,7 @@ namespace DoAn_ASPNETCORE.Areas.Api
             return hoaDonModel;
         }
 
-        // PUT: api/HoaDonAPI/5
+        // PUT: api/HoaDonApi/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -74,7 +74,7 @@ namespace DoAn_ASPNETCORE.Areas.Api
             return NoContent();
         }
 
-        // POST: api/HoaDonAPI
+        // POST: api/HoaDonApi
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -85,9 +85,8 @@ namespace DoAn_ASPNETCORE.Areas.Api
 
             return CreatedAtAction("GetHoaDonModel", new { id = hoaDonModel.ID }, hoaDonModel);
         }
-     
 
-        // DELETE: api/HoaDonAPI/5
+        // DELETE: api/HoaDonApi/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<HoaDonModel>> DeleteHoaDonModel(int id)
         {
@@ -107,6 +106,5 @@ namespace DoAn_ASPNETCORE.Areas.Api
         {
             return _context.HoaDonModel.Any(e => e.ID == id);
         }
-        
     }
 }
